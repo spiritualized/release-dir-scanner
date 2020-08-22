@@ -2,10 +2,10 @@ from distutils.core import setup
 setup(
     name = 'release-dir-scanner',
     packages = ['release_dir_scanner'],
-    version = '1.0.0',
+    version = '1.0.1',
     description = 'Python module for detecting audio releases in a directory structure',
     url = 'https://github.com/spiritualized/release-dir-scanner',
-    download_url = 'https://github.com/spiritualized/release-dir-scanner/archive/v1.0.0.tar.gz',
+    download_url = 'https://github.com/spiritualized/release-dir-scanner/archive/v1.0.1.tar.gz',
     keywords = ['music', 'python', 'scanner', 'management'],
     install_requires = [],
 

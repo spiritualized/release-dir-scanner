@@ -67,14 +67,23 @@ def subdirs_are_discs(subdirs: List[str]) -> bool:
     if len(curr_disc) < 2:
         return False
 
-    # if any of the subfolders are more than 50MB, return False
+    # if any of the subfolders are more than 5MB (excluding images), return False
     for curr in curr_not_disc:
-        if get_dir_size(curr) > 100 * 1024 * 1024:
+        if get_dir_size(curr) > 5 * 1024 * 1024:
             return False
 
     return True
 
 
 def get_dir_size(dir: str) -> int:
-    return sum(os.path.getsize(os.path.join(dirpath, filename)) for dirpath, dirnames, filenames in os.walk(dir)
-               for filename in filenames)
+    size = 0
+
+    for dirpath, dirnames, filenames in os.walk(dir):
+        for filename in filenames:
+            if os.path.splitext(filename)[1].lower() not in ['.png', '.jpg', '.jpeg', '.jpe', '.bmp']:
+                size += os.path.getsize(os.path.join(dirpath, filename))
+
+    return size
+
+    #return sum(os.path.getsize(os.path.join(dirpath, filename)) for dirpath, dirnames, filenames in os.walk(dir)
+    #           for filename in filenames)
